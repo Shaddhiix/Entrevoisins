@@ -45,7 +45,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_name"
-        android:layout_width="445dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+        <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -135,6 +135,51 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_phone"
                 app:layout_constraintTop_toTopOf="@+id/iv_web"
                 tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_about"
+        android:layout_width="448dp"
+        android:layout_height="185dp"
+        android:layout_marginStart="15sp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_about_des"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_name"
+        tools:ignore="NotSibling">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="A propos de moi"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText,NotSibling" />
+
+            <TextView
+                android:id="@+id/tv_about_des"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50sp"
+                android:text="@string/bonjour_je_souhaiterais"
+                app:layout_constraintStart_toStartOf="@+id/tv_about"
+                app:layout_constraintTop_toBottomOf="@+id/tv_about"
+                tools:ignore="MissingConstraints,NotSibling" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
