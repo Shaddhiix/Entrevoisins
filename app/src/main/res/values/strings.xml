@@ -3,5 +3,6 @@
     <string name="tab_neighbour_title">My neighbours</string>
     <string name="tab_favorites_title">Favorites</string>
     <string name="activity_new_neighbour">New neighbour</string>
-    <string name="bonjour_je_souhaiterais">Bonjour, Je souhaiterais...</string>
+    <string name="text_about">Bonjour, Je souhaiterais faire de la marche nordique. Pas initée, je recherche une ou plusieurs personnes susceptibles de m\'accompagner!J'aime les jeux de cartes tels la belote et le tarot…</string>
+    <string name="a_propos_de_moi">A propos de moi</string>
 </resources>
