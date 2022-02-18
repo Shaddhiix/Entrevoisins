@@ -56,9 +56,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="227dp">
 
-        <TextView
+            <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,8 +73,8 @@
 
             <ImageView
                 android:id="@+id/iv_location"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_name"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:text="Ville"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_location"
                 app:layout_constraintStart_toEndOf="@+id/iv_location"
                 app:layout_constraintTop_toTopOf="@+id/iv_location"
@@ -96,8 +96,8 @@
 
             <ImageView
                 android:id="@+id/iv_phone"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_location"
                 app:layout_constraintTop_toBottomOf="@+id/iv_location"
@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="numéro de téléphone"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_phone"
                 app:layout_constraintStart_toStartOf="@+id/tv_location"
                 app:layout_constraintTop_toTopOf="@+id/iv_phone"
@@ -117,9 +117,9 @@
 
             <ImageView
                 android:id="@+id/iv_web"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20sp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/iv_phone"
                 app:layout_constraintTop_toBottomOf="@+id/iv_phone"
                 app:srcCompat="@drawable/ic_baseline_internet_24"
@@ -130,8 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Réseaux social"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_web"
                 app:layout_constraintStart_toStartOf="@+id/tv_phone"
                 app:layout_constraintTop_toTopOf="@+id/iv_web"
                 tools:ignore="HardcodedText" />
@@ -141,46 +141,24 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_about"
-        android:layout_width="448dp"
-        android:layout_height="185dp"
-        android:layout_marginStart="15sp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="15sp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_about_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cv_name"
-        tools:ignore="NotSibling">
+        app:layout_constraintTop_toBottomOf="@+id/cv_name" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_about"
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="A propos de moi"
-                android:textColor="#000000"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="HardcodedText,NotSibling" />
-
-            <TextView
-                android:id="@+id/tv_about_des"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
-                android:text="@string/bonjour_je_souhaiterais"
-                app:layout_constraintStart_toStartOf="@+id/tv_about"
-                app:layout_constraintTop_toBottomOf="@+id/tv_about"
-                tools:ignore="MissingConstraints,NotSibling" />
-
+                android:text="TextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
