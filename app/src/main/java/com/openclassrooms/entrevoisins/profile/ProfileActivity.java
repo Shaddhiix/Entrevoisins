@@ -5,7 +5,7 @@ import com.openclassrooms.entrevoisins.R;
 
 import android.os.Bundle;
 
-public class Profile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
