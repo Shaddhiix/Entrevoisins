@@ -16,7 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.profile.Profile;
+import com.openclassrooms.entrevoisins.profile.ProfileActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -57,6 +57,14 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour));
             }
         });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra("sampleObject",neighbour);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -75,14 +83,6 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context,Profile.class);
-                    context.startActivity(intent);
-                }
-            });
         }
     }
 }
