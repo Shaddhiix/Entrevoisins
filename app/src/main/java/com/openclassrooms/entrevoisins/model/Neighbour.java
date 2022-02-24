@@ -90,6 +90,7 @@ public class Neighbour implements Serializable {
         this.aboutMe = aboutMe;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
