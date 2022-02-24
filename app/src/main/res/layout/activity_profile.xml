@@ -9,7 +9,7 @@
     tools:context=".profile.ProfileActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonFav"
+        android:id="@+id/floatFav"
         android:backgroundTint="#FFFFFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,6 +31,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription,ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Nom"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iv_back_button"
@@ -60,7 +71,7 @@
             android:padding="15dp">
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -72,7 +83,7 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tv_location"
+                android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -82,7 +93,7 @@
                 android:text="Ville"
                 android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_name2"
                 tools:ignore="HardcodedText"
                 app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
 
@@ -97,7 +108,7 @@
                 android:text="numéro de téléphone"
                 android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_location"
+                app:layout_constraintTop_toBottomOf="@+id/tv_city"
                 app:drawableStartCompat="@drawable/ic_baseline_phone_24"
                 tools:ignore="HardcodedText" />
 
@@ -145,12 +156,15 @@
 
             <TextView
                 android:id="@+id/tv_about2"
-                android:layout_width="326dp"
-                android:layout_height="92dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 android:text="@string/text_about"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_about"
-                app:layout_constraintTop_toBottomOf="@+id/tv_about" />
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_about"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
