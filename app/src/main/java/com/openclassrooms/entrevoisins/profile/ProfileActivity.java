@@ -20,7 +20,7 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
 
     ImageView imageProfile;
     FloatingActionButton floatBtn;
-    TextView neigName, neigName2, nameCity, numberPhone, aURL, tAbout;
+    TextView neigName, neigName2, nameCity, numberPhone, fbURL, tAbout;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -31,10 +31,14 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
         imageProfile = findViewById(R.id.iv_profile);
         floatBtn = findViewById(R.id.floatFav);
         neigName = findViewById(R.id.tv_name);
+
+        //CardView 1
         neigName2 = findViewById(R.id.tv_name2);
         nameCity = findViewById(R.id.tv_city);
         numberPhone = findViewById(R.id.tv_phone);
-        aURL = findViewById(R.id.tv_web);
+        fbURL = findViewById(R.id.tv_web);
+
+        //CardView 2
         tAbout = findViewById(R.id.tv_about2);
 
         Neighbour iNeighbour = (Neighbour) getIntent().getSerializableExtra("profil");
@@ -48,12 +52,24 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
     }
 
     private void getDisplay(Neighbour iNeighbour) {
-        Glide.with(this).load(iNeighbour.getAvatarUrl()).into(imageProfile);
+        Glide.with(this).load(iNeighbour.getAvatarUrl()).fitCenter().into(imageProfile);
         neigName.setText(iNeighbour.getName());
+
+        //CardView 1
         neigName2.setText(iNeighbour.getName());
         nameCity.setText(iNeighbour.getAddress());
         numberPhone.setText(iNeighbour.getPhoneNumber());
+        fbURL.setText(iNeighbour.getFbURL() + iNeighbour.getName());
 
+        //CardView 2
         tAbout.setText(iNeighbour.getAboutMe());
+
+        //FloatingActionButton
+        if (iNeighbour.isFavorite()){
+            floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
+        }
+        else {
+            floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
+        }
     }
 }
