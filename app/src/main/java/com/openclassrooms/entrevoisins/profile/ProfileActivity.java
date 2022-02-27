@@ -43,14 +43,9 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
 
         Neighbour iNeighbour = (Neighbour) getIntent().getSerializableExtra("profil");
         getDisplay(iNeighbour);
-
-        floatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
     }
 
+    /** Afficher les Data's */
     private void getDisplay(Neighbour iNeighbour) {
         Glide.with(this).load(iNeighbour.getAvatarUrl()).fitCenter().into(imageProfile);
         neigName.setText(iNeighbour.getName());
@@ -65,11 +60,25 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
         tAbout.setText(iNeighbour.getAboutMe());
 
         //FloatingActionButton
-        if (iNeighbour.isFavorite()){
+       if (iNeighbour.isFavorite()) {
             floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
-        }
-        else {
+       }
+       else {
             floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
-        }
+       }
+
+        floatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (iNeighbour.isFavorite()){
+                    floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
+                }
+                else {
+                    floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
+                }
+
+                iNeighbour.setFavorite(!iNeighbour.isFavorite());
+            }
+        });
     }
 }
