@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -21,6 +23,8 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
     ImageView imageProfile;
     FloatingActionButton floatBtn;
     TextView neigName, neigName2, nameCity, numberPhone, fbURL, tAbout;
+
+    private NeighbourApiService nApiService;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -40,6 +44,8 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
 
         //CardView 2
         tAbout = findViewById(R.id.tv_about2);
+
+        nApiService = DI.getNeighbourApiService();
 
         Neighbour iNeighbour = (Neighbour) getIntent().getSerializableExtra("profil");
         getDisplay(iNeighbour);
@@ -70,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
         floatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (iNeighbour.isFavorite()){
+                if (!iNeighbour.isFavorite()){
                     floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
                 }
                 else {
@@ -78,6 +84,7 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
                 }
 
                 iNeighbour.setFavorite(!iNeighbour.isFavorite());
+                nApiService.createFavoriteNeighbour(iNeighbour);
             }
         });
     }
