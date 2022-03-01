@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
-public class ProfileActivity extends AppCompatActivity implements Serializable {
+public class ProfileActivity extends AppCompatActivity {
 
     ImageView imageProfile;
     FloatingActionButton floatBtn;
@@ -32,6 +32,16 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        initView();
+
+        nApiService = DI.getNeighbourApiService();
+
+        Neighbour iNeighbour = (Neighbour) getIntent().getSerializableExtra("profil");
+        getDisplay(iNeighbour);
+    }
+
+    private void initView() {
+
         imageProfile = findViewById(R.id.iv_profile);
         floatBtn = findViewById(R.id.floatFav);
         neigName = findViewById(R.id.tv_name);
@@ -44,11 +54,6 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
 
         //CardView 2
         tAbout = findViewById(R.id.tv_about2);
-
-        nApiService = DI.getNeighbourApiService();
-
-        Neighbour iNeighbour = (Neighbour) getIntent().getSerializableExtra("profil");
-        getDisplay(iNeighbour);
     }
 
     /** Afficher les Data's */
@@ -83,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity implements Serializable {
                     floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
                 }
 
-                iNeighbour.setFavorite(!iNeighbour.isFavorite());
+                iNeighbour.setFavorite(iNeighbour.isFavorite());
                 nApiService.createFavoriteNeighbour(iNeighbour);
             }
         });
