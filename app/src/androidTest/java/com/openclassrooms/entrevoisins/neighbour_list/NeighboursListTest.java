@@ -1,22 +1,6 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.contrib.RecyclerViewActions;
-import androidx.test.espresso.matcher.ViewMatchers;
-import androidx.test.rule.ActivityTestRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
-import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -26,6 +10,22 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
 
+import android.app.Activity;
+
+import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
+
+import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
+import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
+
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 
 /**
@@ -37,15 +37,13 @@ public class NeighboursListTest {
     // This is fixed
     private static final int ITEMS_COUNT = 12;
 
-    private ListNeighbourActivity mActivity;
-
     @Rule
     public ActivityTestRule<ListNeighbourActivity> mActivityRule =
-            new ActivityTestRule(ListNeighbourActivity.class);
+            new ActivityTestRule<>(ListNeighbourActivity.class);
 
     @Before
     public void setUp() {
-        mActivity = mActivityRule.getActivity();
+        Activity mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
     }
 
@@ -75,26 +73,28 @@ public class NeighboursListTest {
 
     @Test
     public void myNeighboursOpenProfile() {
-        // afficher la liste & cliquer pour afficher le profil
+        // Display the list & click for display the profile
         onView(ViewMatchers.withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
+        // Check the profile view
         onView(ViewMatchers.withId(R.id.profile_neighbour))
                 .check(matches(isDisplayed()));
     }
 
     @Test
     public void theNeighbourFavorite () {
+        // Click on the neighbour for display the profile
         onView(ViewMatchers.withId(R.id.list_neighbours))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
-
+        // Click on FloatingActionButton
         onView(ViewMatchers.withId(R.id.floatFav))
                 .perform(ViewActions.click());
-
+        // PressBack
         pressBack();
-
+        //Swipe left
         onView(ViewMatchers.withId(R.id.container))
                 .perform(ViewActions.swipeLeft());
-
+        // Checking the presence of the favorite neighbour
         onView(ViewMatchers.withId(R.id.favorite_neighbours))
                 .check(withItemCount(1));
     }
