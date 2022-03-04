@@ -1,6 +1,8 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
@@ -16,9 +18,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.core.IsNull.notNullValue;
 
@@ -31,7 +35,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 public class NeighboursListTest {
 
     // This is fixed
-    private static int ITEMS_COUNT = 12;
+    private static final int ITEMS_COUNT = 12;
 
     private ListNeighbourActivity mActivity;
 
@@ -67,5 +71,31 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+    }
+
+    @Test
+    public void myNeighboursOpenProfile() {
+        // afficher la liste & cliquer pour afficher le profil
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
+        onView(ViewMatchers.withId(R.id.profile_neighbour))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void theNeighbourFavorite () {
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
+
+        onView(ViewMatchers.withId(R.id.floatFav))
+                .perform(ViewActions.click());
+
+        pressBack();
+
+        onView(ViewMatchers.withId(R.id.container))
+                .perform(ViewActions.swipeLeft());
+
+        onView(ViewMatchers.withId(R.id.favorite_neighbours))
+                .check(withItemCount(1));
     }
 }
