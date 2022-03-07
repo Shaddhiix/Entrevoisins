@@ -1,5 +1,13 @@
 package com.openclassrooms.entrevoisins.profile;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,13 +18,8 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.io.Serializable;
+import butterknife.BindDrawable;
+import butterknife.ButterKnife;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -26,11 +29,23 @@ public class ProfileActivity extends AppCompatActivity {
 
     private NeighbourApiService nApiService;
 
+    @SuppressLint("NonConstantResourceId")
+    @BindDrawable(R.drawable.ic_star_border_white_24dp)
+    public Drawable mStarBorderWhite;
+    @SuppressLint("NonConstantResourceId")
+    @BindDrawable(R.drawable.ic_active_favorite_24)
+    public Drawable mStarYellow;
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //Back Button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ButterKnife.bind(this);
 
         initView();
 
@@ -57,6 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     /** Afficher les Data's */
+    @SuppressLint("SetTextI18n")
     private void getDisplay(Neighbour iNeighbour) {
         Glide.with(this).load(iNeighbour.getAvatarUrl()).fitCenter().into(imageProfile);
         neigName.setText(iNeighbour.getName());
@@ -71,26 +87,25 @@ public class ProfileActivity extends AppCompatActivity {
         tAbout.setText(iNeighbour.getAboutMe());
 
         //FloatingActionButton
-       if (iNeighbour.isFavorite()) {
-            floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
-       }
-       else {
-            floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
-       }
+        configureFavBtn(iNeighbour);
 
         floatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!iNeighbour.isFavorite()){
-                    floatBtn.setImageResource(R.drawable.ic_active_favorite_24);
-                }
-                else {
-                    floatBtn.setImageResource(R.drawable.ic_disabled_favorite_24);
-                }
-
-                iNeighbour.setFavorite(iNeighbour.isFavorite());
                 nApiService.createFavoriteNeighbour(iNeighbour);
+                iNeighbour.setFavorite(!iNeighbour.isFavorite());
+
+               configureFavBtn(iNeighbour);
             }
         });
+    }
+
+    private void configureFavBtn(Neighbour iNeighbour) {
+        if (iNeighbour.isFavorite()) {
+            floatBtn.setImageDrawable(mStarYellow);
+        }
+        else {
+            floatBtn.setImageDrawable(mStarBorderWhite);
+        }
     }
 }
