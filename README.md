@@ -1,6 +1,6 @@
 ## EntreVoisins
 
-<img src="ImageApp.PNG" width="500" height="187"/>
+<img src="ImageApp.PNG"/>
 
 Here is a copy of the current version of the application "EntreVoisins"
 
@@ -9,7 +9,7 @@ To be able to compile & run the application, follow the following instructions :
 
 - Download the ZIP folder and open it in Android Studio.
   or
-- In Android Studio, use the terminal and execute the command "git clone https://github.com/Shaddhiix/Entrevoisins.git".
+- In Android Studio, use the terminal and execute the command ``git clone https://github.com/Shaddhiix/Entrevoisins.git``.
 
 # Run
 
