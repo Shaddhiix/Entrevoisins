@@ -1,6 +1,6 @@
 ## EntreVoisins
 
-<img src="ImageApp.PNG"/>
+<img src="imageApp.PNG"/>
 
 Here is a copy of the current version of the application "EntreVoisins"
 
