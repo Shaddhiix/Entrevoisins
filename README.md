@@ -8,7 +8,9 @@ To be able to compile & run the application, follow the following instructions :
 # Installation
 
 - Download the ZIP folder and open it in Android Studio.
-  or
+  
+  Or
+  
 - In Android Studio, use the terminal and execute the command ``git clone https://github.com/Shaddhiix/Entrevoisins.git``.
 
 # Run
