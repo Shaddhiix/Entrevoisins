@@ -74,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
     /** Afficher les Data's */
     @SuppressLint("SetTextI18n")
     private void getDisplay(Neighbour iNeighbour) {
-        Glide.with(this).load(iNeighbour.getAvatarUrl()).fitCenter().into(imageProfile);
+        Glide.with(this).load(iNeighbour.getAvatarUrl()).into(imageProfile);
         neigName.setText(iNeighbour.getName());
 
         //CardView 1
